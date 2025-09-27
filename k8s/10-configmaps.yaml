@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-a-conf
+  namespace: pki-lab
+data:
+  nginx.conf: |
+    events {}
+    http {
+      server {
+        listen 8443 ssl;
+        server_name nginx-a.pki-lab.svc.cluster.local;
+        ssl_certificate     /etc/nginx/tls/tls.crt;
+        ssl_certificate_key /etc/nginx/tls/tls.key;
+        ssl_verify_client off;
+        location / {
+          default_type text/plain;
+          return 200 "Hello from nginx-a (TLS)\n";
+        }
+      }
+    }
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-b-conf
+  namespace: pki-lab
+data:
+  nginx.conf: |
+    events {}
+    http {
+      server {
+        listen 8443 ssl;
+        server_name nginx-b.pki-lab.svc.cluster.local;
+        ssl_certificate     /etc/nginx/tls/tls.crt;
+        ssl_certificate_key /etc/nginx/tls/tls.key;
+        ssl_verify_client off;
+        location / {
+          default_type text/plain;
+          return 200 "Hello from nginx-b (TLS)\n";
+        }
+      }
+    }

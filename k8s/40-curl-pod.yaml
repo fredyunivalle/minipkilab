@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: curl
+  namespace: pki-lab
+spec:
+  restartPolicy: Never
+  containers:
+    - name: curl
+      image: curlimages/curl:8.9.1
+      command: ["sh","-lc","sleep 3600"]
+      volumeMounts:
+        - name: ca
+          mountPath: /ca
+  volumes:
+    - name: ca
+      configMap:
+        name: ca-cm
+        items:
+          - key: ca.crt
+            path: ca.crt

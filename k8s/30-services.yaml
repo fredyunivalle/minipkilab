@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-a
+  namespace: pki-lab
+spec:
+  selector: { app: nginx-a }
+  ports:
+    - name: https
+      port: 8443
+      targetPort: 8443
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-b
+  namespace: pki-lab
+spec:
+  selector: { app: nginx-b }
+  ports:
+    - name: https
+      port: 8443
+      targetPort: 8443

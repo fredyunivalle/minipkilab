@@ -1,0 +1,12 @@
+services:
+  nginx:
+    build: .
+    container_name: pki-nginx
+    ports:
+      - "8443:443"
+    networks:
+      pki:
+        aliases:
+          - server.local
+networks:
+  pki: {}

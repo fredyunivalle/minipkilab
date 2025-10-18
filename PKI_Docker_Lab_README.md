@@ -43,7 +43,6 @@ pki-lab/
 - **Asymmetric cryptography:** a **private key** (keep it secret) and a **public key** (shareable). Anything encrypted with one can be verified/decrypted with the other.
 - **Certificate (X.509):** a public key plus identity metadata (subject, validity, SANs…), **digitally signed** by an issuer.
 - **CA (Certificate Authority):** a special identity that signs other certificates. Clients trust a CA’s certificate (`ca.crt`), and therefore trust anything it signs.
-- **Certificate chain:** your server cert is trusted because a trusted CA signed it (or an intermediate CA signed by a trusted root). In this lab we use a single root CA.
 - **SAN (Subject Alternative Name):** the official place to list hostnames/IPs the certificate is valid for. Modern TLS ignores the old CN for hostname matching—**SANs are mandatory**.
 - **TLS handshake (high level):** client and server negotiate algorithms, the server proves identity with its certificate, and both sides derive a symmetric session key for fast encryption.
 
